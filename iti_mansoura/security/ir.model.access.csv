@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_iti_mansoura,iti_mansoura,model_iti_mansoura,base.group_user,1,1,1,1
+access_father,iti_mansoura_father,model_father,base.group_user,1,1,1,1
+access_son,iti_mansoura_son,model_son,base.group_user,1,1,1,1

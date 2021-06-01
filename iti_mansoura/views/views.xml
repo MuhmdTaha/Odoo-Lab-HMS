@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="iti_mansoura_list">
+            <field name="name">Mansoura List</field>
+            <field name="model">iti.mansoura</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Student Name"/>
+                    <field name="value" invisible="1"/>
+                    <field name="float"/>
+                    <field name="date"/>
+                    <field name="datetime"/>
+                    <field name="boolean"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="iti_mansoura_form">
+            <field name="name">Mansoura Form</field>
+            <field name="model">iti.mansoura</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name='action_confirmed' string='Confirm' type="object"/>
+                        <button name='action_graduate' string='Graduate' states='confirmed' type="object"/>
+                        <field name="state" widget='statusbar'/>
+                    </header>
+                    <sheet>
+                        <group string="Basic info">
+                            <field name="name" string="Student Name"/>
+                            <field name="value"/>
+                            <field name="value2"/>
+                            <field name="float"/>
+                        </group>
+                        <group string="Extra Info">
+                            <field name="date"/>
+                        </group>
+                        <notebook>
+                            <page string="tab 1">
+                                <group>
+                                    <field name="datetime"/>
+                                    <field name="selection"/>
+                                </group>
+                            </page>
+                            <page string="tab 2">
+                                <group>
+                                    <field name="boolean"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="iti_mansoura_action">
+            <field name="name">ITI</field>
+            <field name="res_model">iti.mansoura</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+        </record>
+        <record model="ir.actions.act_window" id="iti_mansoura_father_action">
+            <field name="name">Father</field>
+            <field name="res_model">father</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="iti_mansoura_son_action">
+            <field name="name">Son</field>
+            <field name="res_model">son</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+
+        <menuitem name="ITI" id="iti_mansoura_main_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Mansoura" id="iti_mansoura_menu" parent="iti_mansoura_main_root" action="iti_mansoura_action"/>
+        <menuitem name="Fathers ans Sons" id="iti_father_sons" parent="iti_mansoura_main_root"/>
+        <!-- actions -->
+
+        <menuitem name="Father" id="iti_mansoura_father" parent="iti_father_sons"
+                  action="iti_mansoura_father_action"/>
+        <menuitem name="Son" id="iti_mansoura_son" parent="iti_father_sons"
+                  action="iti_mansoura_son_action"/>
+    </data>
+</odoo>
